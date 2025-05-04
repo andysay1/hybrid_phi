@@ -1,6 +1,6 @@
 [package]
 name = "hybrid_phi"
-version = "0.1.1"
+version = "0.1.2"
 edition = "2021"
 authors = ["Idan Kaminer info@paxintrade.com>"]
 description = "High-accuracy φ-based hybrid approximation method"

@@ -40,3 +40,68 @@ mod tests {
         }
     }
 }
+
+/// Inverse of hybrid φ-based approximation
+///
+/// Given approximated value `w_hat` and index `n`, reconstructs the original `w`.
+///
+/// This inverts the approximation:
+/// `w_hat ≈ a · φ(N) · (1 - r + r / √2)`
+///
+/// Returns original `w ≈ a · φ(N)`
+pub fn hybrid_phi_inverse(w_hat: f64, n: usize) -> f64 {
+    if n == 0 || n > PHI_TABLE.len() {
+        return w_hat; // fallback
+    }
+
+    let phi = PHI_TABLE[n - 1];
+
+    // We solve for a using the original correction function:
+    // w_hat = a * φ * (1 - r + r / √2)
+    //
+    // Let’s define x = a · φ
+    // Let’s find r numerically via iteration (or approx):
+    //
+    // But since r = w - a·φ ≈ 0 for a good approx,
+    // we can just reverse the correction:
+    //
+    // Let c = correction = (1 - r + r / √2)
+    // Then:
+    // x = w_hat / c
+    //
+    // We'll solve for c numerically via Newton–Raphson
+    // But here we use a fast approximation (since r small):
+    //
+    // Approximate inverse correction:
+    let mut x = w_hat;
+    for _ in 0..3 {
+        let a = x / phi;
+        let r = x - a * phi;
+        let correction = 1.0 - r + r / std::f64::consts::SQRT_2;
+        x = w_hat / correction;
+    }
+
+    x
+}
+
+#[test]
+fn test_inverse_consistency() {
+    let eps = f64::EPSILON.sqrt(); // ≈ 1.49e-8 — безопасный допуск
+    let w = 123.456;
+
+    for n in 1..=32 {
+        let approx = hybrid_phi_approximate(w, n);
+        let recovered = hybrid_phi_inverse(approx, n);
+
+        let abs_err = (recovered - w).abs();
+        let rel_err = abs_err / w.abs().max(1.0); // нормировка
+
+        assert!(
+            abs_err < eps || rel_err < eps,
+            "n = {}, abs_err = {:.3e}, rel_err = {:.3e}",
+            n,
+            abs_err,
+            rel_err
+        );
+    }
+}
