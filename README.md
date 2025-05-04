@@ -47,7 +47,7 @@ Where:
 
 ## 🔐 License
 
-NonCommercial
+🚫 Commercial use requires a separate license. Contact info@paxintrade.com
 
 ---
 
