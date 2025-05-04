@@ -47,7 +47,7 @@ Where:
 
 ## 🔐 License
 
-MIT
+NonCommercial
 
 ---
 

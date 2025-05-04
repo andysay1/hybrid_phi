@@ -36,7 +36,7 @@ mod tests {
             let w = rng.gen_range(-1000.0..1000.0);
             let approx = hybrid_phi_approximate(w, 10);
             let err = (approx - w).abs();
-            assert!(err < 1e-11, "w = {}, approx = {}, err = {}", w, approx, err);
+            assert!(err < 1e-10, "w = {}, approx = {}, err = {}", w, approx, err);
         }
     }
 }

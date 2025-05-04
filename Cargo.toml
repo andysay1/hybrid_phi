@@ -4,8 +4,8 @@ version = "0.1.0"
 edition = "2021"
 authors = ["Idan Kaminer info@paxintrade.com>"]
 description = "High-accuracy φ-based hybrid approximation method"
-license = "MIT"
-repository = "https://github.com/youruser/hybrid_phi"
+license-file = "LICENSE"
+repository = "https://github.com/andysay1/hybrid_phi"
 keywords = ["approximation", "compression", "numerical", "embedded", "float"]
 categories = ["algorithms", "mathematics", "embedded"]
 readme = "README.md"
@@ -24,3 +24,4 @@ exclude = [
 ]
 
 [dependencies]
+rand = "0.8"
