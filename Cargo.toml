@@ -10,4 +10,17 @@ keywords = ["approximation", "compression", "numerical", "embedded", "float"]
 categories = ["algorithms", "mathematics", "embedded"]
 readme = "README.md"
 
+exclude = [
+    "/target/*",
+    "**/*.rs.bk",
+    "**/*.log",
+    "**/*.tmp",
+    "**/.DS_Store",
+    "/.idea/*",
+    "/.vscode/*",
+    "*.zip",
+    "*.png",
+    "*.jpg"
+]
+
 [dependencies]
