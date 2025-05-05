@@ -1,6 +1,6 @@
 [package]
 name = "hybrid_phi"
-version = "0.1.2"
+version = "1.0.0"
 edition = "2021"
 authors = ["Idan Kaminer info@paxintrade.com>"]
 description = "High-accuracy φ-based hybrid approximation method"
@@ -25,3 +25,8 @@ exclude = [
 
 [dependencies]
 rand = "0.8"
+plotters = "0.3"
+chrono = { version = "0.4", features = ["serde"] }
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+
